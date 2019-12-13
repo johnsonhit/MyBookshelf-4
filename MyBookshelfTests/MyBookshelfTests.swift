@@ -12,22 +12,82 @@ import XCTest
 class MyBookshelfTests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testGetBookDetailClient() {
+    
+        let isbn = "9781617294136"
+        
+        let promise = expectation(description: "get request should succeed")
+        
+        BookshelfClient.shared.getBookDetail(isbn: isbn) { detail, error in
+            
+            if let error = error {
+                
+              XCTFail("Error: \(error.localizedDescription)")
+              return
+                
+            } else if let detail = detail {
+                
+                if String(detail.isbn13) != isbn {
+                    XCTFail("wrong data received \(detail)")
+                    return
+                }
+                
+                promise.fulfill()
+                
+              } else {
+                
+                XCTFail("nil value returned")
+                
+            }
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
     }
+    
+    func testGetSearchResultClient() {
+    
+        let searchTerm = "swift"
+        
+        let promise = expectation(description: "request should complete")
+        
+        BookshelfClient.shared.getSearchResultWithCache(query: searchTerm, page: nil) { result in
+            
+            if let error = result.error {
+                
+              XCTFail("Error: \(error.localizedDescription)")
+              return
+                
+            } else if let page = result.page, let books = result.books {
+                print("page  \(page), books: \(books) ")
+                promise.fulfill()
+                
+              } else {
+                
+                XCTFail("nil value returned")
+                
+            }
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
+    }
+    
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+    func testsearchBarSearchButtonClickedPerformance() {
+        
+        let term = "something"
+        
         self.measure {
-            // Put the code you want to measure the time of here.
+            BookshelfClient.shared.getSearchResultWithCache(query: term, page: nil, completion: { _ in
+                
+            })
         }
     }
 
