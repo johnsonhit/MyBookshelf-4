@@ -15,7 +15,7 @@ class BookshelfClient {
     static let shared = BookshelfClient()
     
     // Search result Cache
-    private let searchedCache = NSCache<NSString, BookSearchedData>()
+    private let searchedCache = NSCache<NSString, BookSearchedDataCache>()
     
     func getNew(completion: @escaping ([Book]?, Error?) -> Void) {
         
@@ -78,13 +78,13 @@ class BookshelfClient {
         
     }
     
-    private func getSearchResult(requestStr: String, completion: @escaping (BookSearchedData) -> Void) {
+    private func getSearchResult(requestStr: String, completion: @escaping (BookSearchedDataCache) -> Void) {
         
         AF.request(requestStr).response { response in
             
             if response.error != nil {
                 
-                completion(BookSearchedData(books: nil, page: nil, error: response.error))
+                completion(BookSearchedDataCache(books: nil, page: nil, error: response.error))
                 return
                 
             } else {
@@ -97,9 +97,9 @@ class BookshelfClient {
                     for data in json["books"].arrayValue {
                         books.append(Book(data))
                     }
-                    print(json)
+//                    print(json)
                     
-                    let cacheObj = BookSearchedData(books: books, page: json["page"].intValue, error: nil)
+                    let cacheObj = BookSearchedDataCache(books: books, page: json["page"].intValue, error: nil)
                     
                     self.searchedCache.setObject(cacheObj, forKey: requestStr as NSString)
                     
@@ -107,7 +107,7 @@ class BookshelfClient {
                 
                 } catch let error as NSError {
                     print("convert to json fail in getSearchResult : \(error.debugDescription)")
-                    completion(BookSearchedData(books: nil, page: nil, error: error))
+                    completion(BookSearchedDataCache(books: nil, page: nil, error: error))
                 }
                 
             }
@@ -116,7 +116,7 @@ class BookshelfClient {
         
     }
     
-    func getSearchResultWithCache(query: String,  page: Int?, completion: @escaping (BookSearchedData) -> Void) {
+    func getSearchResultWithCache(query: String,  page: Int?, completion: @escaping (BookSearchedDataCache) -> Void) {
         
         let requestStr = "\(MyBookshelfAPI.search.api)/\(query)\((page != nil) ? "/\(String(page!))" : "")"
         

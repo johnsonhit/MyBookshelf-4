@@ -92,7 +92,7 @@ class DetailViewController: UIViewController {
     
     // MARK: Convenience
     
-    func instantiateNoteViewController() -> UIViewController {
+    private func instantiateNoteViewController() -> UIViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: NoteViewController.storyboardIdentifier)
             as? NoteViewController
             else { fatalError("Unable to instantiate an NoteViewController from the storyboard") }
@@ -104,7 +104,7 @@ class DetailViewController: UIViewController {
         return controller
     }
     
-    func calculateCellHeightByWordLength(_ info: BookDetailInfo) -> CGFloat {
+    private func calculateCellHeightByWordLength(_ info: BookDetailInfo) -> CGFloat {
         
         let nsText = "\(info.0)  : \(info.1)" as NSString?
         guard let size = nsText?.boundingRect(with: CGSize(width: (view.frame.width - Constants.cellContentInset * 2), height: CGFloat.greatestFiniteMagnitude), options: [.truncatesLastVisibleLine, .usesFontLeading, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: Constants.fontSize)], context: nil).size else {

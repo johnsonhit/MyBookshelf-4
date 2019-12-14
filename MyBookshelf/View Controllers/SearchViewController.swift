@@ -36,7 +36,7 @@ class SearchViewController: UIViewController {
     
     // MARK: settter
     
-    func setSearchController() {
+    private func setSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = Constants.searchPlaceholder
         navigationItem.searchController = searchController
@@ -44,19 +44,16 @@ class SearchViewController: UIViewController {
         searchController.searchBar.delegate = self
     }
     
-    func setIndicatorView() {
-        indicatorView = UIActivityIndicatorView(style: .large)
-        indicatorView.color = .darkGray
-        indicatorView.hidesWhenStopped = true
+    private func setIndicatorView() {
+        indicatorView = IndicatorUtils.shared.createIndicator(style: .large, frame: collectionView.frame)
         collectionView.addSubview(indicatorView)
-        indicatorView.frame = collectionView.frame
     }
 }
 
+// MARK: UICollectionViewDataSource
+
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    // MARK: UICollectionViewDataSource
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return books.numberOfBooks
@@ -90,6 +87,8 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
 }
 
+// MARK: UICollectionViewDataSourcePrefetching
+
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
@@ -105,6 +104,8 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         
     }
 }
+
+// MARK: UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -129,6 +130,8 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 }
+
+// MARK: SearchViewModelDelegate
 
 extension SearchViewController: SearchViewModelDelegate {
     func updateView(indexes: [Int]?) {

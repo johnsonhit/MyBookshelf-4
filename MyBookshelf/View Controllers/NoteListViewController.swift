@@ -28,6 +28,8 @@ class NoteListViewController: UIViewController {
 
 }
 
+// MARK: UICollectionViewDataSource
+
 extension NoteListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let notes = notes else {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3100848D23A34A9200609230 /* CollectionViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3100848C23A34A9200609230 /* CollectionViewControllerExtension.swift */; };
 		31176E2F23A312670051B520 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31176E2E23A312670051B520 /* NoteViewController.swift */; };
+		315BA00D23A46DD000D77887 /* IndicatorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315BA00C23A46DD000D77887 /* IndicatorUtils.swift */; };
 		3180310F23A1C5D5007DDCC7 /* BookSearchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180310E23A1C5D5007DDCC7 /* BookSearchedData.swift */; };
 		3180311123A1CAF9007DDCC7 /* UserNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180311023A1CAF9007DDCC7 /* UserNote.swift */; };
 		31803B10239F64C3000E30BF /* MyBookshelfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31803B0F239F64C3000E30BF /* MyBookshelfAPI.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		3100848C23A34A9200609230 /* CollectionViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewControllerExtension.swift; sourceTree = "<group>"; };
 		31176E2E23A312670051B520 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		315BA00C23A46DD000D77887 /* IndicatorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorUtils.swift; sourceTree = "<group>"; };
 		3180310E23A1C5D5007DDCC7 /* BookSearchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchedData.swift; sourceTree = "<group>"; };
 		3180311023A1CAF9007DDCC7 /* UserNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNote.swift; sourceTree = "<group>"; };
 		31803B0F239F64C3000E30BF /* MyBookshelfAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookshelfAPI.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				31E4608423A3282800F522BE /* AnchorUtils.swift */,
 				3100848C23A34A9200609230 /* CollectionViewControllerExtension.swift */,
+				315BA00C23A46DD000D77887 /* IndicatorUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				31176E2F23A312670051B520 /* NoteViewController.swift in Sources */,
 				31A8F8C223A1D8AC0082AFE9 /* RealmClient.swift in Sources */,
 				3100848D23A34A9200609230 /* CollectionViewControllerExtension.swift in Sources */,
+				315BA00D23A46DD000D77887 /* IndicatorUtils.swift in Sources */,
 				31E4607E23A31C8900F522BE /* NoteListViewController.swift in Sources */,
 				31BCEC28239F60150072F01F /* NewViewController.swift in Sources */,
 				31BCEBFC239F53D00072F01F /* AppDelegate.swift in Sources */,

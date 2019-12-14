@@ -25,7 +25,6 @@ class RealmClient {
         }
         
     }
-    
 
     func retrieveUserNote(isbn13: String) -> UserNote? {
         

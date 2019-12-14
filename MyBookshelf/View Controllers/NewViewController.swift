@@ -48,12 +48,9 @@ class NewViewController: UICollectionViewController {
     
     // MARK: Setter
     
-    func setIndicatorView() {
-        indicatorView = UIActivityIndicatorView(style: .large)
-        indicatorView.color = .darkGray
-        indicatorView.hidesWhenStopped = true
+    private func setIndicatorView() {
+        indicatorView = IndicatorUtils.shared.createIndicator(style: .large, frame: collectionView.frame)
         collectionView.addSubview(indicatorView)
-        indicatorView.frame = collectionView.frame
         indicatorView.startAnimating()
     }
     
@@ -83,7 +80,7 @@ class NewViewController: UICollectionViewController {
     
     // MARK: Convenience
     
-    func instaintiateAllNotesViewController() -> UIViewController {
+    private func instaintiateAllNotesViewController() -> UIViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: NoteListViewController.storyboardIdentifier)
             as? NoteListViewController
             else { fatalError("Unable to instantiate an NoteListViewController from the storyboard") }

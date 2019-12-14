@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BookSearchedData {
+class BookSearchedDataCache {
     
     let books: [Book]?
     let page: Int?

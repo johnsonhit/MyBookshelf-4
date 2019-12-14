@@ -66,7 +66,7 @@ class WebViewController: UIViewController {
     
     // MARK: Convenience
     
-    func loadUrl(urlStr: String) {
+    private func loadUrl(urlStr: String) {
         guard let url = URL(string: urlStr) else {
             return
         }
@@ -78,6 +78,8 @@ class WebViewController: UIViewController {
     }
     
 }
+
+// MARK: WKNavigationDelegate
 
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
